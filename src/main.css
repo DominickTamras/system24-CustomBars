@@ -1125,3 +1125,52 @@ html.theme-light {
 .burstGlow__23977 {
 	display: none;
 }
+
+div[class*="connectionIcon"]::before {
+    content: "";
+    display: block;
+    width: 0;
+    height: 0;
+    background: none !important;
+}
+
+/* Create a stair-step connection icon */
+div[class*="connectionIcon"] {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    width: 16px;
+    height: 12px;
+    gap: 2px;
+}
+
+/* Style individual bars */
+div[class*="connectionIcon"]::after {
+    content: "";
+    display: flex;
+    flex-direction: column;
+    width: 3px;
+    background-color: #00ff00; /* Default strong connection */
+    box-shadow:
+        0px -2px 0px 0px #00ff00, /* Bar 2 */
+        0px -5px 0px 0px #00ff00, /* Bar 3 */
+        0px -8px 0px 0px #00ff00; /* Bar 4 */
+}
+
+/* Adjust colors for different connection levels */
+div[class*="connectionIcon"][style*="yellow"]::after {
+    background-color: #ffcc00; /* Medium connection */
+    box-shadow:
+        0px -2px 0px 0px #ffcc00, /* Bar 2 */
+        0px -5px 0px 0px transparent, /* Bar 3 (Hidden) */
+        0px -8px 0px 0px transparent; /* Bar 4 (Hidden) */
+}
+
+div[class*="connectionIcon"][style*="red"]::after {
+    background-color: #ff0000; /* Weak connection */
+    box-shadow:
+        0px -2px 0px 0px transparent, /* Bar 2 (Hidden) */
+        0px -5px 0px 0px transparent, /* Bar 3 (Hidden) */
+        0px -8px 0px 0px transparent; /* Bar 4 (Hidden) */
+}
+
